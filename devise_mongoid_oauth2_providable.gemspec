@@ -1,11 +1,10 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "devise_oauth2_providable/version"
+require "devise_mongoid_oauth2_providable/version"
 
 Gem::Specification.new do |s|
   s.name        = "devise_mongoid_oauth2_providable"
   s.version     = Devise::Oauth2Providable::VERSION
-  s.platform    = Gem::Platform::RUBY
   s.authors     = ["Ryan Sonnek", "Kelly Martin"]
   s.email       = ["ryan@socialcast.com"]
   s.homepage    = ""
