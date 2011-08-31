@@ -1,6 +1,7 @@
 require 'expirable_token'
 
-class AuthorizationCode < ActiveRecord::Base
+class AuthorizationCode 
+  include Mongoid::Document
   include ExpirableToken
   def access_token
     @access_token ||= expired! && user.access_tokens.create(:client => client)

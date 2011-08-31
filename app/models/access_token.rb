@@ -1,6 +1,7 @@
 require 'expirable_token'
 
-class AccessToken < ActiveRecord::Base
+class AccessToken 
+  include Mongoid::Document
   include ExpirableToken
   self.default_lifetime = 15.minutes
 

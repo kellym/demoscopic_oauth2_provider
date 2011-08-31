@@ -2,6 +2,8 @@
 
 Rails3 engine that brings OAuth2 Provider support to your application.
 
+This version requires Mongoid.
+
 Current OAuth2 Specification Draft:
 http://tools.ietf.org/html/draft-ietf-oauth-v2-15
 
@@ -23,14 +25,8 @@ gem 'devise_oauth2_providable'
 
 ```ruby
 # create new Rails migration
-class CreateOauth2Schema < ActiveRecord::Migration
-  def self.up
-    Devise::Oauth2Providable::Schema.up(self)
-  end
-  def self.down
-    Devise::Oauth2Providable::Schema.down(self)
-  end
-end
+No migration is necessary to get it running with Mongoid.
+
 ```
 ```ruby
 class User
