@@ -25,9 +25,10 @@ gem 'devise_mongoid_oauth2_providable'
 
 ```ruby
 # create new Rails migration
+```
 No migration is necessary to get it running with Mongoid.
 
-```
+
 ```ruby
 class User
   # NOTE: include :database_authenticatable configuration
