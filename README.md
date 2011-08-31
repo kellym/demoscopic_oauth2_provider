@@ -20,7 +20,7 @@ the request.  http://tools.ietf.org/html/draft-ietf-oauth-v2-bearer-04
 
 ```ruby
 # Bundler Gemfile
-gem 'devise_oauth2_providable'
+gem 'devise_mongoid_oauth2_providable'
 ```
 
 ```ruby
