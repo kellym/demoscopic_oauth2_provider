@@ -25,6 +25,8 @@ module OAuth2::Scopes::Included
   end
 end
 ```
+Now when you request your access token, include `scope=non_expiring` to call
+on that scope. 
 
 ## Installation
 
