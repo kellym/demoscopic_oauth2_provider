@@ -4,6 +4,7 @@ class AccessToken
   include Mongoid::Document
   include Mongoid::Timestamps
   include ExpirableToken
+  include OAuth2::Scopes
   
   self.default_lifetime = 15.minutes
 
@@ -22,7 +23,7 @@ class AccessToken
   end
 
   private
-
+  
   def restrict_expires_at
     self.expires_at = [self.expires_at, refresh_token.expires_at].min
   end

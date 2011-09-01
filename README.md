@@ -13,8 +13,18 @@ http://tools.ietf.org/html/draft-ietf-oauth-v2-15
 * one-stop-shop includes all Models, Controllers and Views to get up and
   running quickly
 * All server requests support authentication via bearer token included in
-the request.  http://tools.ietf.org/html/draft-ietf-oauth-v2-bearer-04
+  the request.  http://tools.ietf.org/html/draft-ietf-oauth-v2-bearer-04
 
+Scopes are now supported. For instance, make a non_expiring token by adding 
+a scope to OAuth2::Scopes::Included like this:
+
+```ruby
+module OAuth2::Scopes::Included
+  def non_expiring
+    self.default_lifetime = 100.years
+  end
+end
+```
 
 ## Installation
 
@@ -23,9 +33,6 @@ the request.  http://tools.ietf.org/html/draft-ietf-oauth-v2-bearer-04
 gem 'devise_mongoid_oauth2_providable'
 ```
 
-```ruby
-# create new Rails migration
-```
 No migration is necessary to get it running with Mongoid.
 
 
