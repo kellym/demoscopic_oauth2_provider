@@ -56,6 +56,7 @@ end
 
 You can add a client via your `seeds.rb` file or you can use a controller to
 create them for you:
+
 ```ruby
 client = Client.create!(
   :name => "My OAuth2 App",
