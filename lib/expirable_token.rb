@@ -16,8 +16,7 @@ module ExpirableToken
       validates :client, :presence => true
       validates :token, :presence => true, :uniqueness => true
 
-      # TODO: this should be a default scope once rails default_scope supports lambda's
-      scope :valid, -> { where(:expires_at.gte => Time.now.utc)  }
+      default_scope -> { where(:expires_at.gte => Time.now.utc)  }
 
     end
   end
