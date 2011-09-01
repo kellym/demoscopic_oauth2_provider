@@ -12,7 +12,7 @@ module Devise
       end
 
       def client
-        @client ||= Client.find_by_identifier params[:client_id]
+        @client ||= Client.first(conditions: {oauth_identifier: params[:client_id]})
         env['oauth2.client'] = @client
         @client
       end

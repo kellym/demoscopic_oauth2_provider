@@ -2,12 +2,15 @@ require 'expirable_token'
 
 class AccessToken 
   include Mongoid::Document
+  include Mongoid::Timestamps
   include ExpirableToken
+  
   self.default_lifetime = 15.minutes
 
   before_validation :restrict_expires_at, :if => :refresh_token
   belongs_to :refresh_token
 
+  
   def token_response
     response = {
       :access_token => token,

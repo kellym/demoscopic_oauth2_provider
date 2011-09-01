@@ -1,4 +1,5 @@
 class Oauth2::AuthorizationsController < ApplicationController
+  skip_before_filter :verify_authenticity_token
   before_filter :authenticate_user!
 
   rescue_from Rack::OAuth2::Server::Authorize::BadRequest do |e|
@@ -29,7 +30,7 @@ class Oauth2::AuthorizationsController < ApplicationController
 
   def authorize_endpoint(allow_approval = false)
     Rack::OAuth2::Server::Authorize.new do |req, res|
-      @client = Client.find_by_identifier(req.client_id) || req.bad_request!
+      @client = Client.first(conditions: {oauth_identifier: req.client_id}) || req.bad_request!
       res.redirect_uri = @redirect_uri = req.verify_redirect_uri!(@client.redirect_uri)
       if allow_approval
         if params[:approve].present?

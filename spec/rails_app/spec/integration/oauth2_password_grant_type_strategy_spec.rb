@@ -10,7 +10,7 @@ describe Devise::Strategies::Oauth2PasswordGrantTypeStrategy do
 
           params = {
             :grant_type => 'password',
-            :client_id => @client.identifier,
+            :client_id => @client.oauth_identifier,
             :client_secret => @client.secret,
             :username => @user.email,
             :password => 'test'
@@ -33,7 +33,7 @@ describe Devise::Strategies::Oauth2PasswordGrantTypeStrategy do
 
           params = {
             :grant_type => 'password',
-            :client_id => @client.identifier,
+            :client_id => @client.oauth_identifier,
             :client_secret => @client.secret,
             :username => @user.email,
             :password => 'bar'

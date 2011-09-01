@@ -6,6 +6,9 @@ module ExpirableToken
 
       belongs_to :user
       belongs_to :client
+      
+      field :token
+      field :expires_at, type: DateTime
 
       before_validation :init_token, :on => :create, :unless => :token?
       before_validation :init_expires_at, :on => :create, :unless => :expires_at?
@@ -14,14 +17,13 @@ module ExpirableToken
       validates :token, :presence => true, :uniqueness => true
 
       # TODO: this should be a default scope once rails default_scope supports lambda's
-      scope :valid, lambda {
-        where(self.arel_table[:expires_at].gteq(Time.now.utc))
-      }
+      scope :valid, -> { where(:expires_at.gte => Time.now.utc)  }
+
     end
   end
 
   def expires_in
-    (expires_at - Time.now.utc).to_i
+    expires_at.to_i - Time.now.utc.to_i
   end
 
   def expired!

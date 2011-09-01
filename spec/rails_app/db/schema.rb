@@ -46,13 +46,13 @@ ActiveRecord::Schema.define(:version => 20110511210926) do
     t.string   "name"
     t.string   "redirect_uri"
     t.string   "website"
-    t.string   "identifier"
+    t.string   "oauth_identifier"
     t.string   "secret"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "clients", ["identifier"], :name => "index_clients_on_identifier", :unique => true
+  add_index "clients", ["oauth_identifier"], :name => "index_clients_on_oauth_identifier", :unique => true
 
   create_table "refresh_tokens", :force => true do |t|
     t.integer  "user_id"

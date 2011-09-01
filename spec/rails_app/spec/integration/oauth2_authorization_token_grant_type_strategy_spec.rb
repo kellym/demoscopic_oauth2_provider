@@ -10,7 +10,7 @@ describe Devise::Strategies::Oauth2AuthorizationCodeGrantTypeStrategy do
           @authorization_code = @user.authorization_codes.create(:client_id => @client, :redirect_uri => @client.redirect_uri)
           params = {
             :grant_type => 'authorization_code',
-            :client_id => @client.identifier,
+            :client_id => @client.oauth_identifier,
             :client_secret => @client.secret,
             :code => @authorization_code.token
           }
@@ -38,7 +38,7 @@ describe Devise::Strategies::Oauth2AuthorizationCodeGrantTypeStrategy do
           @authorization_code = @user.authorization_codes.create(:client_id => @client, :redirect_uri => @client.redirect_uri)
           params = {
             :grant_type => 'authorization_code',
-            :client_id => @client.identifier,
+            :client_id => @client.oauth_identifier,
             :client_secret => @client.secret,
             :refresh_token => 'invalid'
           }
