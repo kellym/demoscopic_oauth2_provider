@@ -1,24 +1,31 @@
-# devise_oauth2_providable
+# demoscopic_oauth2_provider
 
 Rails3 engine that brings OAuth2 Provider support to your application.
 
-This version requires Mongoid.
+This version requires Mongoid. Also note: the Specs are messed up a bit
+from the conversion, but if anyone would like to fix them up before I have
+time, please fork this and send me a pull request.
 
-Current OAuth2 Specification Draft:
-http://tools.ietf.org/html/draft-ietf-oauth-v2-15
+[Current OAuth2 Specification Draft](http://tools.ietf.org/html/draft-ietf-oauth-v2-15)
 
 ## Features
 
 * integrates OAuth2 authentication with Devise authenthentication stack
+* includes Scopes in a Facebook sense, so you can limit user data or 
+  modify the requests
 * one-stop-shop includes all Models, Controllers and Views to get up and
   running quickly
 * All server requests support authentication via bearer token included in
   the request.  http://tools.ietf.org/html/draft-ietf-oauth-v2-bearer-04
 
-Scopes are now supported. For instance, make a non_expiring token by adding 
-a scope to OAuth2::Scopes::Included like this (via an initializer file):
+This was originally a fork from [devise_oauth2_providable](https://github.com/socialcast/devise_oauth2_providable) but has been 
+modified to suit those of us using Mongoid.
+
+In addition, scopes are supported in this version. For instance, make a 
+non_expiring token by adding a scope to OAuth2::Scopes::Included:
 
 ```ruby
+# config/initializers/oauth2_scopes.rb
 module OAuth2::Scopes::Included
   def non_expiring
     self.default_lifetime = 100.years
@@ -32,11 +39,10 @@ on that scope.
 
 ```ruby
 # Bundler Gemfile
-gem 'devise_mongoid_oauth2_providable'
+gem 'demoscopic_oauth2_provider'
 ```
 
 No migration is necessary to get it running with Mongoid.
-
 
 ```ruby
 class User
@@ -47,6 +53,19 @@ class User
     :oauth2_refresh_token_grantable
 end
 ```
+
+You can add a client via your `seeds.rb` file or you can use a controller to
+create them for you:
+```ruby
+client = Client.create!(
+  :name => "My OAuth2 App",
+  :redirect_uri => "http://localhost:3000/oauth/callback",
+  :website => "http://localhost:3000/",
+  :oauth_identifier => "[Generated if not included]",
+  :secret => "[Generated if not included]" 
+)
+```
+
 
 ## Models
 
@@ -122,9 +141,3 @@ http://tools.ietf.org/html/draft-ietf-oauth-v2-15#section-6
 * Submit pull request on github
 
 See CONTRIBUTORS.txt for list of project contributors
-
-## Copyright
-
-Copyright (c) 2011 Socialcast, Inc. 
-See LICENSE.txt for further details.
-

@@ -1,4 +1,4 @@
-require 'devise_mongoid_oauth2_providable/strategies/oauth2_grant_type_strategy'
+require 'demoscopic_oauth2_provider/strategies/oauth2_grant_type_strategy'
 
 module Devise
   module Strategies
