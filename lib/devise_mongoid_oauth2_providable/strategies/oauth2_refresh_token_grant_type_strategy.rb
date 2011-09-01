@@ -8,7 +8,7 @@ module Devise
       end
 
       def authenticate!
-        if client && refresh_token = client.refresh_tokens.find_by_token(params[:refresh_token])
+        if client && refresh_token = client.refresh_tokens.first(conditions: {token: params[:refresh_token]})
           env['oauth2.refresh_token'] = refresh_token
           success! refresh_token.user
         elsif !halted?
