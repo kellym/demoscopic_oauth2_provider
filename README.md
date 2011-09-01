@@ -16,7 +16,7 @@ http://tools.ietf.org/html/draft-ietf-oauth-v2-15
   the request.  http://tools.ietf.org/html/draft-ietf-oauth-v2-bearer-04
 
 Scopes are now supported. For instance, make a non_expiring token by adding 
-a scope to OAuth2::Scopes::Included like this:
+a scope to OAuth2::Scopes::Included like this (via an initializer file):
 
 ```ruby
 module OAuth2::Scopes::Included
