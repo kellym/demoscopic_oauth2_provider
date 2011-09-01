@@ -39,7 +39,7 @@ on that scope.
 
 ```ruby
 # Bundler Gemfile
-gem 'demoscopic_oauth2_provider'
+gem 'demoscopic_oauth2_provider', :git => 'git://github.com/kellym/demoscopic_auth2_provider.git'
 ```
 
 No migration is necessary to get it running with Mongoid.
