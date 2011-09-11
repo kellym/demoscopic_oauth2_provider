@@ -4,7 +4,7 @@ module ExpirableToken
       cattr_accessor :default_lifetime
       self.default_lifetime = 1.minute
 
-      belongs_to :user
+      belongs_to :user, class_name: Devise.mappings[:user].class_name
       belongs_to :client
       
       field :token
