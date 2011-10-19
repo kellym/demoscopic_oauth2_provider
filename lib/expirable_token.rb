@@ -8,7 +8,7 @@ module ExpirableToken
       belongs_to :client
       
       field :token
-      field :expires_at, type: DateTime
+      field :expires_at, type: Time
 
       before_validation :init_token, :on => :create, :unless => :token?
       before_validation :init_expires_at, :on => :create, :unless => :expires_at?
@@ -22,7 +22,7 @@ module ExpirableToken
   end
 
   def expires_in
-    expires_at.to_i - Time.now.utc.to_i
+    expires_at.utc.to_i - Time.now.utc.to_i
   end
 
   def expired!
